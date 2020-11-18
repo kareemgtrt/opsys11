@@ -1,7 +1,4 @@
-///هذا البوت الاصدار الثاني من بوت السيستم تحت ادارة اسامة خالد :
-///رابط المقطع: https://youtu.be/6B9nrQp02Rk
-//// البوت تجميع ، وليس عمل من الصفر والغاية بالاخير افادة الناس وجميع الحقوق محفوظة وموجودة
-///اخر تحديث 11\5\2020
+///OP///OP///OP///OP///OP///OP
 require("events").EventEmitter.defaultMaxListeners = 200;
 const http = require("http");
 const express = require("express");
@@ -11,7 +8,7 @@ app.get("/", (request, response) => {
 });
 app.listen(process.env.PORT);
 setInterval(() => {
-  http.get(`http://op-sys-v5.glitch.me/`);
+  http.get(`http://opsys-7.glitch.me/`);
 }, 280000);
 
 ////بكجات
@@ -36,10 +33,10 @@ const { get } = require("snekfetch");
 const guild = require("guild");
 const dateFormat = require("dateformat");
 const YouTube = require("simple-youtube-api");
-const youtube = new YouTube("AIzaSyBrg43U4e3-7Dk08xbB4L1r-QSX5p9eIYM"); //تعديل اساسي سوي اي بي اي جديد
+const youtube = new YouTube("AIzaSyBcz9roIyFgugR6UTC5AUnJy9CikKF80O4"); //تعديل اساسي سوي اي بي اي جديد
 const hastebins = require("hastebin-gen");
 const getYoutubeID = require("get-youtube-id");
-const yt_api_key = "AIzaSyBrg43U4e3-7Dk08xbB4L1r-QSX5p9eIYM"; ///تعديل اساسي سوي اي بي اي جديد
+const yt_api_key = "AIzaSyBcz9roIyFgugR6UTC5AUnJy9CikKF80O4"; ///تعديل اساسي سوي اي بي اي جديد
 const pretty = require("pretty-ms");
 client.login(process.env.TOKEN);
 const queue = new Map();
@@ -144,28 +141,36 @@ client.on("message", message => {
 });
 
 client.on("message", async message => {
-  if (!message.guild || message.author.bot) return;
-  let args = message.content.split(" ");
+  ///OP
+  if (!message.guild || message.author.bot) return; ///OP
+  let args = message.content.split(" "); ///OP
   if (args[0] == `${prefix}cr`) {
+    ///OP
     if (
-      !message.guild.me.hasPermission("MANAGE_ROLES") ||
-      !message.member.hasPermission("MANAGE_ROLES")
+      !message.guild.me.hasPermission("MANAGE_ROLES") || ///OP
+      !message.member.hasPermission("MANAGE_ROLES") ///OP
     )
-      return;
+      return; ///OP
     if (!args[1] || !args[2])
+      ///OP
       return message.reply(
+        ///OP
         `Usage: ${args[0]} [role color] [role name]\nExample: ${
-          args[0]
-        } blue Admin`
+          ///OP
+          args[0] ///OP
+        } blue Admin` ///OP
       );
     try {
+      ///OP
       let role = await message.guild.createRole({
-        name: args.slice(2).join(" ") || "new role",
-        color: args[1].toUpperCase() || null
+        ///OP
+        name: args.slice(2).join(" ") || "new role", ///OP
+        color: args[1].toUpperCase() || null ///OP
       });
-      await message.reply(`Done, Created **${role.name}** role!`);
+      await message.reply(`Done, Created **${role.name}** role!`); ///OP
     } catch (e) {
-      message.reply(`Error! ${e.message || e}`);
+      ///OP
+      message.reply(`Error! ${e.message || e}`); ///OP
     }
   }
 });
@@ -683,60 +688,32 @@ client.on("message", message => {
   }
 });
 
-client.on("message", function(message) {
-  if (!message.channel.guild) return;
-  if (message.author.bot) return;
-  if (message.author.id === client.user.id) return;
-  if (message.author.equals(client.user)) return;
-  if (!message.content.startsWith(prefix)) return;
 
-  var args = message.content.substring(prefix.length).split(" ");
-  switch (args[0].toLocaleLowerCase()) {
-    case "clear":
-      message.delete();
-      if (!message.channel.guild) return;
-      if (message.member.hasPermission(0x2000)) {
-        if (!args[1]) {
-          message.channel.fetchMessages().then(messages => {
-            message.channel.bulkDelete(messages);
-            var messagesDeleted = messages.array().length;
-            message.channel
-              .send(
-                " " +
-                  "**```fix\n" +
-                  messagesDeleted +
-                  " " +
-                  ": عدد الرسائل التي تم مسحها" +
-                  "```**"
-              )
-              .then(m => m.delete(5000));
-          });
-        } else {
-          let messagecount = parseInt(args[1]);
-          message.channel
-            .fetchMessages({ limit: messagecount })
-            .then(messages => message.channel.bulkDelete(messages));
-          message.channel
-            .send(
-              " " +
-                "**```fix\n" +
-                args[1] +
-                " " +
-                ": عدد الرسائل التي تم مسحها" +
-                "```**"
-            )
-            .then(m => m.delete(5000));
-          message.delete(60000);
+
+client.on("message", message => {
+    var prefix = "$";
+ 
+            var args = message.content.substring(prefix.length).split(" ");
+            if (message.content.startsWith(prefix + "clear")) {
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **ليس لديك صلاحيات**');
+        var msg;
+        msg = parseInt();
+     
+      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+      message.channel.sendMessage("", {embed: {
+        title: "Done | تــم",
+        color: 0x06DF00,
+        description: "تم مسح الرسائل بنجاح",
+        footer: {
+          text: "Extrim Bot."
         }
-      } else {
-        var manage = new Discord.RichEmbed()
-          .setDescription("You Do Not Have Permission MANAGE_MESSAGES :(")
-          .setColor("RANDOM");
-        message.channel.sendEmbed(manage);
-        return;
-      }
-  }
+      }}).then(msg => {msg.delete(3000)});
+                          }
+ 
+     
 });
+
+  
 ///تعديل غير اساسي
 ////كود هيلب
 client.on("message", message => {
@@ -746,6 +723,7 @@ client.on("message", message => {
       message.author
         .send(
           `   
+
 ||:loudspeaker: invite Extrim bot to your server :heart: https://discord.com/api/oauth2/authorize?client_id=728396022056747118&permissions=8&scope=bot||
 
 \`الاوامر العامة\` :postbox:
@@ -756,7 +734,10 @@ client.on("message", message => {
 \`${prefix}color\` : To choose your color in the server
 \`${prefix}colors\` : Change your color 
 \`${prefix}inf\` : The number of invitations to the server
-\`${prefix}link\` : to get a link for the server
+\`${prefix}link\` : To get a link for the server
+\`${prefix}invites\` : To See your invites
+\`${prefix}topinvites\` : To see To see who has the most invitations
+\`${prefix}Devs\` : To See the developers for the bot
 
 \`الاوامر الإدارية\` :stars:
 \`${prefix}clear\` : to clear the chat
@@ -769,6 +750,7 @@ client.on("message", message => {
 \`${prefix}new\` : Open the ticket
 \`${prefix}closet\` : Delete ticket rome
 \`${prefix}say\` : The bot keeps repeating your words
+\`${prefix}embed\`: The bot keeps repeating your words with embed
 \`${prefix}move\` : to get someone to your rome
 \`${prefix}reply\` : To create an automatic response
 \`${prefix}setLog\` : To determine the log rome
@@ -908,18 +890,9 @@ client.on("message", message => {
 \`${prefix}repeat\` : toggles the repeat mode 
 ||There is a problem with the songs that will be solved soon ...||
 
-\`أوامر الحماية\` :closed_lock_with_key:
-\`${prefix}settings limit bans=settings limitsban\` : تحدد العدد الي تبيه لو حد بند  البوت يبنده 
-\`${prefix}settings limit kicks=settings limitskick\` : تحدد العدد الي تبيه لو حد طرد 3 او 4 البوت يبنده 
-\`${prefix}settings limit remove channels=settings limitsroleD\` : تحدد العدد الي تبيه لو حد مسح رول 3 او 4 البوت يبنده 
-\`${prefix}settings limit make channels=settings limitsroleC\` : تحدد العدد الي تبيه لو حد صنع روم 3 او 4 البوت يبنده 
-\`${prefix}settings limit remove channels=settings limitstime\` : تحدد العدد الي تبيه لو حد مسح روم 3 او 4 البوت يبنده 
-\`${prefix}settings limit bans time=settings limitsti\` : تحديد الوقت الذي من خلالة يتم التبنيد كـ مثال اذا شخص بند 5 في دقيقة البوت يبنده
-\`${prefix}antibots on\` : Prevent bots from entering
-\`${prefix}antibots off\` : Allow bots to enter
 
-`); 
-      })
+`);
+        })
         .then(e => {
           message.react("✅");
         })
@@ -936,7 +909,9 @@ client.on("message", message => {
   }
 });
 
-////كود قيف اوي
+
+
+   ////كود قيف اوي
 client.on("message", async message => {
   var room;
   var title; //HactorMC
@@ -1061,6 +1036,10 @@ client.on("message", async message => {
       });
   }
 });
+
+
+
+
 //all copyrighit for revenge https://github.com/Bowlingtoolkit
 
 ///تعديل غير اساسي
@@ -1811,15 +1790,22 @@ client.on("message", message => {
 });
 
 client.on("message", message => {
-  if (message.content === "$invite") {
-    message.channel.send("**https://discord.com/api/oauth2/authorize?client_id=728396022056747118&permissions=8&scope=bot**");
+  if (message.content === "Hop Hop") {
+    message.channel.send("Hop Hop OP On The Top");
     message.channel.sendFile("");
   }
 });
 
 client.on("message", message => {
-  if (message.content === "دعوه") {
-    message.channel.send("**https://discord.com/api/oauth2/authorize?client_id=728396022056747118&permissions=8&scope=bot**");
+  if (message.content === "$invite") {
+    message.channel.send("**Please Check Your DM** :white_check_mark:");
+    message.channel.sendFile("");
+  }
+});
+
+client.on("message", message => {
+  if (message.content === "who is lucky?") {
+    message.channel.send("**my love :relieved: :heart:**");
     message.channel.sendFile("");
   }
 });
@@ -1894,7 +1880,7 @@ client.on("message", message => {
       return message.channel.send("**ليس لديك صلاحيات . ❌**");
     message.channel.send(
       `**${args}.  | :ballot_box_with_check: |لقد تم شغيل المغادرة هنا**`
-    ); 
+    );
     client.on("guildMemberAdd", member => {
       if (member.user.bot) return;
       var embed = new Discord.RichEmbed()
@@ -2822,7 +2808,7 @@ client.on("message", async message => {
       credits: 0
     };
   fs.writeFileSync("./credits.json", JSON.stringify(credits, null, 4));
-  if (args[0].toLowerCase() == `${prefix}credits`) {
+  if (args[0].toLowerCase() == `${prefix}credit`) {
     const mention = message.mentions.users.first() || message.author;
     const mentionn = message.mentions.users.first();
     if (!args[2]) {
@@ -2882,7 +2868,7 @@ type these numbers to confirm: `
               })
               .then(collected => {
                 if (collected.first().content === num) {
-                  essss.delete()
+                  essss.delete();
                   message.channel.send(
                     `**:moneybag: | ${
                       message.author.username
@@ -3236,7 +3222,7 @@ client.on("message", message => {
 ////تعديل غير اساسي
 
 client.on("message", message => {
-  if (message.content.split(" ")[0] === prefix + "رابط") {
+  if (message.content.split(" ")[0] === prefix + "link") {
     message.channel
       .createInvite({
         thing: true,
@@ -3385,7 +3371,10 @@ client.on("message", message => {
                   message.channel
                     .send(message.member + ", **:timer:**")
                     .then(m => {
-                      m.edit(message.member + ", **are you going to be active in the role?🎙**");
+                      m.edit(
+                        message.member +
+                          ", **are you going to be active in the role?🎙**"
+                      );
                       setTimeout(() => {
                         m.delete();
                       }, 10000);
@@ -3402,7 +3391,8 @@ client.on("message", message => {
                             .send(message.member + ", **:timer:**")
                             .then(m => {
                               m.edit(
-                                message.member + ", **are you will respect the rules? 📑**"
+                                message.member +
+                                  ", **are you will respect the rules? 📑**"
                               );
                               setTimeout(() => {
                                 m.delete();
@@ -3499,7 +3489,9 @@ client.on("message", message => {
         SEND_MESSAGES: false
       });
     });
-    message.channel.send("**✅ تم انشاء روم التقديمات|apply room Successfully بنجاح**");
+    message.channel.send(
+      "**✅ تم انشاء روم التقديمات|apply room Successfully بنجاح**"
+    );
   }
 });
 
@@ -4348,45 +4340,709 @@ client.on("message", async msg => {
   }
 });
 
-var statuss = ["$help","Thx for using Extrim bot","Extrim is in Beta now!"]; // بالإمكان اضافة المزيد بدون التعديل في الكود
+var statuss = ["$help", "Thx for using Extrim bot", "Extrim is in Beta now!"]; // بالإمكان اضافة المزيد بدون التعديل في الكود
 var secound = 3; // عدد الثواني المحددة
-client.on("ready", () =>{
-	var timeing = Math.floor(secound*1000);
-	setInterval(function(){
-		var ammount = statuss.length;
-		var num = Math.floor(Math.random() * ammount);
-		client.user.setActivity(statuss[num], {type: 'PLAYING', url: 'http://twitch.tv/nil'})
-	}, timeing)
+client.on("ready", () => {
+  var timeing = Math.floor(secound * 1000);
+  setInterval(function() {
+    var ammount = statuss.length;
+    var num = Math.floor(Math.random() * ammount);
+    client.user.setActivity(statuss[num], {
+      type: "PLAYING",
+      url: "http://twitch.tv/nil"
+    });
+  }, timeing);
+});
+
+client.on("ready", () => {
+  // افنت التشغيل
+  setInterval(function() {
+    client.guilds.forEach(g => {
+      var role = g.roles.find("name", "👑OWNER👑");
+      if (role) {
+        role.edit({ color: "RANDOM" });
+      }
+    });
+  }, 10000); //لازم تخلي رتبه البوت اعلى من رتبه الون تبعه
+});
+
+client.on("message", wolf => {
+  if (wolf.content === prefix + "invite") {
+    wolf.author.send(
+      "https://discord.com/api/oauth2/authorize?client_id=728396022056747118&permissions=8&scope=bot"
+    );
+    wolf.react(":white_check_mark:");
+  }
+});
+
+const online = [
+  "Extrim Bot On The Top",
+  "Hi Im Extrim Bot My perfix is $",
+  "What?"
+];
+
+client.on("message", message => {
+  if (message.content.startsWith("<@!728396022056747118>")) {
+    message.reply(online[Math.floor(Math.random() * online.length)]);
+  }
 });
 
 
-client.on('guildMemberAdd', member => {
-   if(member.presence.status === 'offline') {
-       member.guild.owner.send(`**<@${member.id}> دخل للسيرفر وهو مسوي نفسه اوفلاين**`)
+
+
+
+  client.on("message",async msg => {
+    if(msg.content.startsWith(prefix + "clearOP213124frrgr")){
+      let args = msg.content.split(" ").slice(1).join(" ");
+      if(!args)  return msg.reply(`**${msg.content} <Number Messages Deleted?>**`)
+      msg.reply("**Are You Sure Of The Deleted Messages?**").then(o => {
+        o.react("✅")
+        .then(()=> o.react('❎'))
+        .then(()=> o.react("✅"))
+        let reaction1 = (reaction,user) => reaction.emoji.name === "✅" && user.id === msg.author.id
+        let reaction2 = (reaction,user) => reaction.emoji.name === "❎" && user.id === msg.author.id
+        let react3 = o.createReactionCollector(reaction1, { time: 12300})
+        let react4 = o.createReactionCollector(reaction2, { time: 12300})
+        react3.on("collect", r => {
+         msg.channel.bulkDelete(args)
+          msg.reply(`**Done Deleted Messages ${args}**`).then(op => {
+          op.delete(1200)
+         o.delete(1200)
+         msg.delete(1200)
+       })
+       react4.on("collect", r => {
+        msg.reply(`**Done Deleted Messages Has Been Cancel**`).then(ob => {
+          ob.delete(1200)
+          o.delete(1200)
+          msg.delete(1200)
+        })
+        })
+      })
+    })
+    
+    }
+  });
+
+
+
+client.on("guildCreate", (guild) => {
+  let channel = client.channels.get(guild.channels.filter(c => c.permissionsFor(client.user).has("SEND_MESSAGES") && c.type === "text").map(r => r.id)[0])    
+  channel.send(`
+  
+Thanks For adding the bot to your Server | شــكرا لاضافه البوت
+  
+  
+  
+  
+  `)
+});
+
+
+
+client.on("message", message => {
+  if (message.author.bot) return;
+
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "embed") {
+    if (!message.channel.guild)
+      return message.channel
+        .send("هذا الأمر فقط للسيرفرات")
+        .then(m => m.delete(5000));
+    if (!message.member.hasPermission("MANAGE_MESSAGES"))
+      return message.channel.send("للأسف لا تمتلك صلاحية MANAGE_MESSAGES");
+    let say = new Discord.RichEmbed()
+      .setDescription(args.join("  "))
+      .setColor("BLACK");
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
+});
+
+
+
+client.on('message', message => {
+    if (message.content.startsWith("$Devs",)) {
+    message.channel.send({
+    embed: new Discord.RichEmbed()
+
+       .setThumbnail('https://cdn.discordapp.com/attachments/691278599331774475/778574921718169650/40e675277520adb64ce3f4680dbd888d.png')
+
+       .setColor('BLACK')
+       .setTitle('``Developer`` ')
+       .addField('**Name**' ,`<@684042312770387970>` , true)
+       
+    })
+    }
+    });
+
+
+client.on('message',message =>{
+ if(message.content.split(' ')[0].toLowerCase() == prefix + 'invites') {
+let guild = message.guild
+var codes = [""]
+ var nul = 0
+      
+guild.fetchInvites()
+.then(invites => {
+invites.forEach(invite => {
+if (invite.inviter === message.author) {
+    nul+=invite.uses
+codes.push(`discord.gg/${invite.code}`)
 }
-});
-client.on('guildMemberRemove', member => {
-   if(member.presence.status === 'offline') {
-       member.guild.owner.send(`**<@${member.id}> خرج من السيرفر وهو مسوي نفسه اوفلاين**`)
-}
-});
-client.on('typingStart', (ch, user) => {
-   if(user.presence.status === 'offline') {
-     if(ch.type == 'dm') return;
-       ch.guild.owner.send(`**<@${user.id}> يكتب وهو مسوي نفسه اوفلاين**`)    
-   }
-})
-
  
- client.on('ready', () => {// افنت التشغيل 
-  setInterval(function(){
-      client.guilds.forEach(g => { 
-                  var role = g.roles.find('name', '👑OWNER👑');
-                  if (role) {
-                      role.edit({color : "RANDOM"});
-                  };
-      });
-  }, 10000);//لازم تخلي رتبه البوت اعلى من رتبه الون تبعه
 })
+  if (nul > 0) {
+      const e = new Discord.RichEmbed()
+      .addField(`${message.author.username}`, `You invited 2 **${nul}** people`)
+      .setColor('BLACK')
+      message.channel.send(e)
+  }else {
+                       var embed = new Discord.RichEmbed()
+                        .setColor("BLACK")
+                        .addField(`${message.author.username}`, `You did not invite anyone to this server`)
+
+                       message.channel.send({ embed: embed });
+                        return;
+                    }
+}).then(m => {
+if (codes.length < 0) {
+    var embed = new Discord.RichEmbed()
+.setColor("BLACK")
+.addField(`Your invite codes in ${message.guild.name}`, `You currently don't have any active invites! Please create an invite and start inviting, then you will be able to see your codes here!`)
+message.channel.send({ embed: embed });
+return;
+} else {
+    var embed = new Discord.RichEmbed()
+.setColor("BLACK")
+.addField(`Your invite codes in ${message.guild.name}`, `Invite Codes :\n${codes.join("\n")}`)
+.setColor('BLACK')
+message.channel.send({ embed: embed });
+return;
+}
+})
+}
+
+});
+
+client.on('message',message =>{
+    if(message.content.startsWith(prefix + 'topinvites')) {
+     
+  message.guild.fetchInvites().then(i =>{
+  var invites = [];
+   
+  i.forEach(inv =>{
+    var [invs,i]=[{},null];
+     
+    if(inv.maxUses){
+        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
+    }else{
+        invs[inv.code] =+ inv.uses;
+    }
+        invites.push(`invite: ${inv.url} inviter: ${inv.inviter} \`${invs[inv.code]}\`;`);
+   
+  });
+  var embed = new Discord.RichEmbed()
+  .setColor("BLACK")
+  .setDescription(`${invites.join(`\n`)+'\n\n**By:** '+message.author}`)
+           message.channel.send({ embed: embed });
+   
+  });
+   
+    }
+  });
 
 
+
+
+ client.on("message", async message => {
+  if (message.author.bot || message.channel.type === "dm") return;
+  let args = message.content.split(" ");
+  let author = message.author.id;
+  if (args[0].toLowerCase() === `${prefix}heeeeelsasa86325802635809263402ollooop`) {
+    let embed = new Discord.RichEmbed()
+      .addField(``);
+    await message.channel.send(
+      `:white_check_mark: , **هذه قائمة بجميع اوامر البووت.**`
+    );
+    await message.channel.send(embed);
+  } else if (args[0].toLowerCase() === `${prefix}rnurguhruhe98ghy894h38hsdhhg`) {
+    if (mtickets === false)
+      return message.channel.send(
+        `**تـم ايـقـاف الـتـذاكـر بـواسـطة أحـد مـن الادارة**`
+      );
+    if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
+      return message.channel.send(
+        `**الـبـوت غـيـر قـادر عـلـي صـنـع روم تـحقق مـن الـرتـبـة**`
+      );
+    console.log(current);
+    let openReason = "";
+    current++;
+    message.guild.createChannel(`ticket-${current}`, "text").then(c => {
+      tchannels.push(c.id);
+      c.setParent(category);
+      message.channel.send(`**تـم فـتـح تـذكرتـك**`);
+      c.overwritePermissions(message.guild.id, {
+        READ_MESSAGES: false,
+        SEND_MESSAGES: false
+      });
+      c.overwritePermissions(message.author.id, {
+        READ_MESSAGES: true,
+        SEND_MESSAGES: true
+      });
+ 
+      if (args[1])
+        openReason = `\nReason: [ **__${args.slice(1).join(" ")}__** ]`;
+      let embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .setColor("#36393e")
+        .setDescription(`**Wait Admin To Answer You**${openReason}`);
+      c.send(`${message.author}`);
+      c.send(embed);
+    });
+  } else if (args[0].toLowerCase() === `${prefix}m235235235t235235235i235235235ck235235235e235235235ts`) {
+    if (!message.member.hasPermission("MANAGE_GUILD"))
+      return message.channel.send(
+        `**هـذا الأمـر للأدارة فـقـط**`
+      );
+    if (args[1] && args[1].toLowerCase() === "enable") {
+      mtickets = true;
+      message.channel.send(
+        `**تـم تـفـعـيـل نـظـام الـتذاكـر**`
+      );
+    } else if (args[1] && args[1].toLowerCase() === "disable") {
+      mtickets = false;
+      message.channel.send(
+        `**تـم اغـلاق نـظـام الـتذاكـر**`
+      );
+    } else if (!args[1]) {
+      if (mtickets === true) {
+        mtickets = false;
+        message.channel.send(
+          `**تـم اغـلاق نـظـام الـتذاكـر**`
+        );
+      } else if (mtickets === false) {
+        mtickets = true;
+        message.channel.send(
+          `**تـم تـفـعـيـل نـظـام الـتذاكـر**`
+        );
+      }
+    }
+  } else if (args[0].toLowerCase() === `${prefix}c235235235l235252235235235os325235e`) {
+    if (!message.member.hasPermission("MANAGE_GUILD"))
+      return message.channel.send(
+      `**انـت لـسـت مـن ادارة الـسـيـرفـر لـتـنـفـيذ هذا الأمـر`
+      );
+    if (
+      !message.channel.name.startsWith("ticket-") &&
+      !tchannels.includes(message.channel.id)
+    )
+      return message.channel.send(`**هـذا لـيـس روم تـيـكـيـت**`);
+ 
+    message.channel.send(
+      `**جـاري قـفـل الـروم تـلـقـائـيـا بـعـد 5 ثـوانـي**`
+    );
+    tchannels.splice(tchannels.indexOf(message.channel.id), 1);
+    setTimeout(() => message.channel.delete(), 5000); //لحد هنا
+  } else if (message.content == prefix + `remove`) {
+    if (!message.channel.name.startsWith("ticket-")) {
+      return message.channel.send(`**This command only for the tickets**`);
+    }
+    let member = message.mentions.members.first();
+    if (!member || member.id === client.user.id) {
+      return message.channel.send(`**Please mention the user**`);
+    }
+    if (
+      !message.channel
+        .permissionsFor(member)
+        .has(["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"])
+    ) {
+      return message.channel.send(
+        `**${member.user.tag}** is not in this ticket to remove them`
+      );
+    }
+    message.channel.overwritePermissions(member.id, {
+      SEND_MESSAGES: false,
+      VIEW_CHANNEL: false,
+      READ_MESSAGE_HISTORY: false
+    });
+    message.channel.send(
+      `**Done \nSuccessfully removed \`${member.user.tag}\` from the ticket**`
+    );
+  } else if (message.content == prefix + `add`) {
+    if (!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS"))
+      return message.channel.send(
+        `**Error** \nI Don\'t have MANAGE_CHANNELS Permission to do this`
+      );
+    if (!message.channel.name.startsWith("ticket-"))
+      return message.channel.send(`**This command only for the tickets**`);
+    let member = message.mentions.members.first();
+    if (!member) return message.channel.send(`**Please mention the user**`);
+    if (
+      message.channel
+        .permissionsFor(member)
+        .has(["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"])
+    )
+      return message.channel.send(
+        `this member already in this ticket :rolling_eyes:`
+      );
+    message.channel.overwritePermissions(member.id, {
+      SEND_MESSAGES: true,
+      VIEW_CHANNEL: true,
+      READ_MESSAGE_HISTORY: true
+    });
+    message.channel.send(
+      `**Done \nSuccessfully added <@${member.user.id}> to the ticket**`
+    );
+  } else if (args[0].toLowerCase() === `${prefix}reeeeeeeeeestart`) {
+    if (!devs.includes(message.author.id))
+      return message.channel.send(
+        `:tools:, **أنت لست من ادارة البوت لأستخدام هذا الأمر.**`
+      );
+    message.channel.send(`:white_check_mark:, **جارى اعادة تشغيل البوت.**`);
+    client.destroy();
+ 
+        
+      
+    
+  }
+});
+ 
+
+
+
+//=-=-=-=-=-=-=====================================================================
+
+let count = 0;
+setInterval(
+  () =>
+    require("node-fetch")(process.env.URL).then(() =>
+      console.log(`[${++count}] i love OP ${process.env.URL}`)
+    ),
+  300000
+);
+
+
+//=============================================================================================
+
+const Sra7a = [
+  'صراحه  |  صوتك حلوة؟',
+  'صراحه  |  التقيت الناس مع وجوهين؟',
+  'صراحه  |  شيء وكنت تحقق اللسان؟',
+  'صراحه  |  أنا شخص ضعيف عندما؟',
+  'صراحه  |  هل ترغب في إظهار حبك ومرفق لشخص أو رؤية هذا الضعف؟',
+  'صراحه  |  يدل على أن الكذب مرات تكون ضرورية شي؟',
+  'صراحه  |  أشعر بالوحدة على الرغم من أنني تحيط بك كثيرا؟',
+  'صراحه  |  كيفية الكشف عن من يكمن عليك؟',
+  'صراحه  |  إذا حاول شخص ما أن يكرهه أن يقترب منك ويهتم بك تعطيه فرصة؟',
+  'صراحه  |  أشجع شيء حلو في حياتك؟',
+  'صراحه  |  طريقة جيدة يقنع حتى لو كانت الفكرة خاطئة" توافق؟',
+  'صراحه  |  كيف تتصرف مع من يسيئون فهمك ويأخذ على ذهنه ثم ينتظر أن يرفض؟',
+  'صراحه  |  التغيير العادي عندما يكون الشخص الذي يحبه؟',
+  'صراحه  |  المواقف الصعبة تضعف لك ولا ترفع؟',
+  'صراحه  |  نظرة و يفسد الصداقة؟',
+  'صراحه  |  ‏‏إذا أحد قالك كلام سيء بالغالب وش تكون ردة فعلك؟',
+  'صراحه  |  شخص معك بالحلوه والمُره؟',
+  'صراحه  |  ‏هل تحب إظهار حبك وتعلقك بالشخص أم ترى ذلك ضعف؟',
+  'صراحه  |  تأخذ بكلام اللي ينصحك ولا تسوي اللي تبي؟',
+  'صراحه  |  وش تتمنى الناس تعرف عليك؟',
+  'صراحه  |  ابيع المجرة عشان؟',
+  'صراحه  |  أحيانا احس ان الناس ، كمل؟',
+  'صراحه  |  مع مين ودك تنام اليوم؟',
+  'صراحه  |  صدفة العمر الحلوة هي اني؟',
+  'صراحه  |  الكُره العظيم دايم يجي بعد حُب قوي " تتفق؟',
+  'صراحه  |  صفة تحبها في نفسك؟',
+  'صراحه  |  ‏الفقر فقر العقول ليس الجيوب " ، تتفق؟',
+  'صراحه  |  تصلي صلواتك الخمس كلها؟',
+  'صراحه  |  ‏تجامل أحد على راحتك؟',
+  'صراحه  |  اشجع شيء سويتة بحياتك؟',
+  'صراحه  |  وش ناوي تسوي اليوم؟',
+  'صراحه  |  وش شعورك لما تشوف المطر؟',
+  'صراحه  |  غيرتك هاديه ولا تسوي مشاكل؟',
+  'صراحه  |  ما اكثر شي ندمن عليه؟',
+  'صراحه  |  اي الدول تتمنى ان تزورها؟',
+  'صراحه  |  متى اخر مره بكيت؟',
+  'صراحه  |  تقيم حظك ؟ من عشره؟',
+  'صراحه  |  هل تعتقد ان حظك سيئ؟',
+  'صراحه  |  شـخــص تتمنــي الإنتقــام منـــه؟',
+  'صراحه  |  كلمة تود سماعها كل يوم؟',
+  'صراحه  |  **هل تُتقن عملك أم تشعر بالممل؟',
+  'صراحه  |  هل قمت بانتحال أحد الشخصيات لتكذب على من حولك؟',
+  'صراحه  |  متى آخر مرة قمت بعمل مُشكلة كبيرة وتسببت في خسائر؟',
+  'صراحه  |  ما هو اسوأ خبر سمعته بحياتك؟',
+  '‏صراحه | هل جرحت شخص تحبه من قبل ؟',
+  'صراحه  |  ما هي العادة التي تُحب أن تبتعد عنها؟',
+  '‏صراحه | هل تحب عائلتك ام تكرههم؟',
+  '‏صراحه  |  من هو الشخص الذي يأتي في قلبك بعد الله – سبحانه وتعالى- ورسوله الكريم – صلى الله عليه وسلم؟',
+  '‏صراحه  |  هل خجلت من نفسك من قبل؟',
+  '‏صراحه  |  ما هو ا الحلم  الذي لم تستطيع ان تحققه؟',
+  '‏صراحه  |  ما هو الشخص الذي تحلم به كل ليلة؟',
+  '‏صراحه  |  هل تعرضت إلى موقف مُحرج جعلك تكره صاحبهُ؟',
+ '‏صراحه  |  هل قمت بالبكاء أمام من تُحب؟',
+  '‏صراحه  |  ماذا تختار حبيبك أم صديقك؟',
+  '‏صراحه  | هل حياتك سعيدة أم حزينة؟',
+  'صراحه  |  ما هي أجمل سنة عشتها بحياتك؟',
+  '‏صراحه  |  ما هو عمرك الحقيقي؟',
+  '‏صراحه  |  ما اكثر شي ندمن عليه؟',
+'صراحه  |  ما هي أمنياتك المُستقبلية؟‏',
+]
+client.on('message', message => {
+if (message.content.startsWith('$Sra7a')) {
+  if(!message.channel.guild) return message.reply('** This command only for servers **');
+var client= new Discord.RichEmbed()
+.setTitle("لعبة صراحة ..")
+.setColor('RANDOM')
+.setDescription(`${Sra7a[Math.floor(Math.random() * Sra7a.length)]}`)
+.setImage("https://cdn.discordapp.com/attachments/371269161470525444/384103927060234242/125.png")
+               .setTimestamp()
+
+message.channel.sendEmbed(client);
+message.react("??")
+}
+});
+
+
+const Za7f = [
+ "**صورة وجهك او رجلك او خشمك او يدك**.",
+ "**اصدر اي صوت يطلبه منك الاعبين**.",
+ "**سكر خشمك و قول كلمة من اختيار الاعبين الي معك**.",
+ "**روح الى اي قروب عندك في الواتس اب و اكتب اي شيء يطلبه منك الاعبين  الحد الاقصى 3 رسائل**.",
+ "**قول نكتة اذا و لازم احد الاعبين يضحك اذا محد ضحك يعطونك ميوت الى ان يجي دورك مرة ثانية**.",
+ "**سمعنا صوتك و غن اي اغنية من اختيار الاعبين الي معك**.",
+ "**ذي المرة لك لا تعيدها**.",
+ "**ارمي جوالك على الارض بقوة و اذا انكسر صور الجوال و ارسله في الشات العام**.",
+ "**صور اي شيء يطلبه منك الاعبين**.",
+ "**اتصل على ابوك و قول له انك رحت مع بنت و احين هي حامل....**.",
+ "**سكر خشمك و قول كلمة من اختيار الاعبين الي معك**.",
+ "**سو مشهد تمثيلي عن مصرية بتولد**.",
+ "**اعطي اي احد جنبك كف اذا مافيه احد جنبك اعطي نفسك و نبي نسمع صوت الكف**.",
+ "**ذي المرة لك لا تعيدها**.",
+ "**ارمي جوالك على الارض بقوة و اذا انكسر صور الجوال و ارسله في الشات العام**.",
+ "**روح عند اي احد بالخاص و قول له انك تحبه و الخ**.",
+ "**اكتب في الشات اي شيء يطلبه منك الاعبين في الخاص**.",
+ "**قول نكتة اذا و لازم احد الاعبين يضحك اذا محد ضحك يعطونك ميوت الى ان يجي دورك مرة ثانية**.",
+ "**سامحتك خلاص مافيه عقاب لك :slight_smile:**.",
+ "**اتصل على احد من اخوياك  خوياتك , و اطلب منهم مبلغ على اساس انك صدمت بسيارتك**.",
+ "**غير اسمك الى اسم من اختيار الاعبين الي معك**.",
+ "**اتصل على امك و قول لها انك تحبها :heart:**.",
+ "**لا يوجد سؤال لك سامحتك :slight_smile:**.",
+ "**قل لواحد ماتعرفه عطني كف**.",
+ "**منشن الجميع وقل انا اكرهكم**.",
+ "**اتصل لاخوك و قول له انك سويت حادث و الخ....**.",
+ "**روح المطبخ و اكسر صحن او كوب**.",
+ "**اعطي اي احد جنبك كف اذا مافيه احد جنبك اعطي نفسك و نبي نسمع صوت الكف**.",
+ "**قول لاي بنت موجود في الروم كلمة حلوه**.",
+ "**تكلم باللغة الانجليزية الين يجي دورك مرة ثانية لازم تتكلم اذا ما تكلمت تنفذ عقاب ثاني**.",
+ "**لا تتكلم ولا كلمة الين يجي دورك مرة ثانية و اذا تكلمت يجيك باند لمدة يوم كامل من السيرفر**.",
+ "**قول قصيدة **.",
+ "**تكلم باللهجة السودانية الين يجي دورك مرة ثانية**.",
+ "**اتصل على احد من اخوياك  خوياتك , و اطلب منهم مبلغ على اساس انك صدمت بسيارتك**.",
+ "**اول واحد تشوفه عطه كف**.",
+ "**سو مشهد تمثيلي عن اي شيء يطلبه منك الاعبين**.",
+ "**سامحتك خلاص مافيه عقاب لك :slight_smile:**.",
+ "**اتصل على ابوك و قول له انك رحت مع بنت و احين هي حامل....**.",
+ "**روح اكل ملح + ليمون اذا مافيه اكل اي شيء من اختيار الي معك**.",
+ "**تاخذ عقابين**.",
+ "**قول اسم امك افتخر بأسم امك**.",
+ "**ارمي اي شيء قدامك على اي احد موجود او على نفسك**.",
+ "**اذا انت ولد اكسر اغلى او احسن عطور عندك اذا انتي بنت اكسري الروج حقك او الميك اب حقك**.",
+ "**اذهب الى واحد ماتعرفه وقل له انا كيوت وابي بوسه**.",
+ "**تتصل على الوالده  و تقول لها خطفت شخص**.",
+ "** تتصل على الوالده  و تقول لها تزوجت با سر**.",
+ "**����تصل على الوالده  و تقول لها  احب وحده**.",
+   "**تتصل على شرطي تقول له عندكم مطافي**.",
+   "**خلاص سامحتك**.",
+   "** تصيح في الشارع انا  مجنوون**.",
+   "** تروح عند شخص تقول له احبك**.",
+
+]
+
+
+client.on('message', message => {
+if (message.content.startsWith("$Za7f")) {
+             if(!message.channel.guild) return message.reply('** This command only for servers**');
+var embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+.setThumbnail(message.author.avatarURL) 
+.addField('WOlF BOT' ,
+`${Za7f[Math.floor(Math.random() * Za7f.length)]}`)
+message.channel.sendEmbed(embed);
+console.log('[38ab] Send By: ' + message.author.username)
+ }
+});
+
+
+
+var rebel = ["https://f.top4top.net/p_682it2tg6.png","https://e.top4top.net/p_682a1cus5.png","https://d.top4top.net/p_682pycol4.png","https://c.top4top.net/p_682vqehy3.png","https://b.top4top.net/p_682mlf9d2.png","https://a.top4top.net/p_6827dule1.png","https://b.top4top.net/p_682g1meb10.png","https://a.top4top.net/p_682jgp4v9.png","https://f.top4top.net/p_682d4joq8.png","https://e.top4top.net/p_6828o0e47.png","https://d.top4top.net/p_6824x7sy6.png","https://c.top4top.net/p_682gzo2l5.png","https://b.top4top.net/p_68295qg04.png","https://a.top4top.net/p_682zrz6h3.png","https://f.top4top.net/p_6828vkzc2.png","https://e.top4top.net/p_682i8tb11.png"]
+ client.on('message', message => {
+     var args = message.content.split(" ").slice(1);
+ if(message.content.startsWith(prefix + 'لو خيروك')) {
+      var cat = new Discord.RichEmbed()
+.setImage(rebel[Math.floor(Math.random() * rebel.length)])
+message.channel.sendEmbed(cat);
+ }
+});
+
+
+
+const cuttweet = [
+  'كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟',
+  'كت تويت | أكثر شيء يُسكِت الطفل برأيك؟',
+  'كت تويت | الحرية لـ ... ؟',
+  'كت تويت | قناة الكرتون المفضلة في طفولتك؟',
+  'كت تويت ‏| كلمة للصُداع؟',
+  'كت تويت ‏| ما الشيء الذي يُفارقك؟',
+  'كت تويت | موقف مميز فعلته مع شخص ولا يزال يذكره لك؟',
+  'كت تويت ‏| أيهما ينتصر، الكبرياء أم الحب؟',
+  'كت تويت | بعد ١٠ سنين ايش بتكون ؟',
+  'كت تويت ‏| مِن أغرب وأجمل الأسماء التي مرت عليك؟',
+  '‏كت تويت | عمرك شلت مصيبة عن شخص برغبتك ؟',
+  'كت تويت | أكثر سؤال وجِّه إليك مؤخرًا؟',
+  '‏كت تويت | ما هو الشيء الذي يجعلك تشعر بالخوف؟',
+  '‏كت تويت | وش يفسد الصداقة؟',
+  '‏كت تويت | شخص لاترفض له طلبا ؟',
+  '‏كت تويت | كم مره خسرت شخص تحبه؟.',
+  '‏كت تويت | كيف تتعامل مع الاشخاص السلبيين ؟',
+  '‏كت تويت | كلمة تشعر بالخجل اذا قيلت لك؟',
+  '‏كت تويت | جسمك اكبر من عٌمرك او العكسّ ؟!',
+  '‏كت تويت |أقوى كذبة مشت عليك ؟',
+  '‏كت تويت | تتأثر بدموع شخص يبكي قدامك قبل تعرف السبب ؟',
+  'كت تويت | هل حدث وضحيت من أجل شخصٍ أحببت؟',
+  '‏كت تويت | أكثر تطبيق تستخدمه مؤخرًا؟',
+  '‏كت تويت | ‏اكثر شي يرضيك اذا زعلت بدون تفكير ؟',
+  '‏كت تويت | وش محتاج عشان تكون مبسوط ؟',
+  '‏كت تويت | مطلبك الوحيد الحين ؟',
+  '‏كت تويت | هل حدث وشعرت بأنك ارتكبت أحد الذنوب أثناء الصيام؟',
+]
+
+client.on('message', message => {
+if (message.content.startsWith("$cuttweet")) {
+             if(!message.channel.guild) return message.reply('** This command only for servers**');
+var embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+.setThumbnail(message.author.avatarURL) 
+.addField('لعبه كت تويت' ,
+`${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`)
+message.channel.sendEmbed(embed);
+console.log('[id] Send By: ' + message.author.username)
+ }
+});
+
+const secreT = [
+"**الحياة بكل ما فيها تقف دائمًا على حد الوسطية بين اتزان المعنى وضده من حب وكره وحق وباطل وعدل وظلم**.",
+"**كى تعيش عليك ان تتقن فن التجاهل باحتراف**.",
+"**لا تحزن على من اشعرك بان طيبتك غباء امام وقاحته**.",
+"**هناك من يحلم بالنجاح وهناك من يستيقظ باكرا لتحقيقه**.",
+"**ان تعالج ألمك بنفسك تلك هى القوة**.", 
+"**الجميع يسمع ما تقول والاصدقاء ينصتون لما تقول وافضل الاصدقاء ينصتون لما اخفاه سكوتك**.", 
+"**انتهى زمن الفروسية ، لم تنقرض الخيول بل انقرض الفرسان**.", 
+"**ان تكون اخرسا عاقلا خير من ان تكون نطوقا جهولا**.", 
+"**المناقشات العقيمة لا تنجب افكارا**.", 
+"**نحن نكتب ما لا نستطيع ان نقول وما نريد ان يكون**.", 
+"**نحن نكتب ما لا نستطيع ان نقول وما نريد ان يكون**.", 
+]
+
+
+client.on('message', message => {
+if (message.content.startsWith("$خواطر")) {
+             if(!message.channel.guild) return message.reply('** This command only for servers**');
+var embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+
+.setThumbnail(message.author.avatarURL) 
+.addField('لعبه خواطر' ,
+`${secreT[Math.floor(Math.random() * secreT.length)]}`)
+message.channel.sendEmbed(embed);
+console.log('[id] Send By: ' + message.author.username)
+ }
+});
+
+
+
+
+const Love = [  "**احبك / عدد قطرات المـــطر والشجر وامواج البحر والنجوم الي تتزاحم مبهورة في جمال القمر**.",  "**ساعزفك وساجعلك لحنا تغني عليه جميع قصائد العشــق**.",  "**احبك موت... لاتسألني ما الدليل ارأيت رصاصه تسأل القتيل؟**.",  "**ربما يبيع الانسان شيئا قد شراه لاكن لا يبيع قلبا قد هواه**.",  "**و ما عجبي موت المحبين في الهوى ........... و لكن بقاء العاشقين عجيب**.",   "**حلفت / لاحشـــد جيوش الحب واحتلك مسكين ربي بلاك بعـــاشق ارهـــابي**.",   "**العيــن تعشق صورتك ... والقلب يجري فيه دمك وكل مااسمع صوتك ...شفايفي تقول احبك**.",   "**ياحظ المكان فيك..ياحظ من هم حواليك ...ياحظ الناس تشوفك ... وانا مشتاق اليك**.",   "**لو كنت دمعة داخل عيوني بغمض عليك وصدقي ما راح افتح...ولو كان الثمن عيوني**.",   "**سهل اموت عشانك لكن الصعب اعيش بدونك سهل احبك لكن صعب انساك**.",   "**أخشى ان انظر لعيناك وأنا فى شوق ولهيب لرؤياك**.",   "**أتمنى ان اكون دمعة تولد بعينيك واعيش على خديك واموت عند شفتيك**.",   "**أحياناً أرى الحياة لا تساوى إبتسامة لكن دائماً إبتسامتك هى كيانى**.",   "**من السهل أن ينسى الانسان نفسه .. لكن من الصعب ان ينسى نفساً سكنت نفسه !**.",   "**نفسى أكون نجمة سماك .. همسة شفاك .. شمعة مساك .. بس تبقى معايا وانا معاك**.",   "**أهنئ قلبى بحبك وصبر عينى فى بعدك وأقول إنك نور عينى يجعل روحى فدى قلبك**.", ]
+
+
+client.on('message', message => {
+if (message.content.startsWith("$love")) {
+             if(!message.channel.guild) return message.reply('** This command only for servers**');
+var embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+.setThumbnail(message.author.avatarURL) 
+.addField('Extrim Bot' ,
+`${Love[Math.floor(Math.random() * Love.length)]}`)
+message.channel.sendEmbed(embed);
+console.log('[id] Send By: ' + message.author.username)
+ }
+});
+
+
+
+
+client.on('ready', () => {
+console.log(`im redey`);
+});
+const zead = [
+'*** انا اسمي مريم ***',
+'*** مرحباَ ماهو اسمك ؟ ***',
+`*** اهلا بك ! انا تائهه في هذا المكان  ***`,
+'*** هل تود مساعدتي ؟ ***',
+'*** لماذا هل انت قاسي القلب ؟ ***',
+'*** انني اشفق عليك عليك يجب ان تطهر روحك وتحب الخير للجميع ***',
+'*** ابتعد عني قليل انني متعبة ***',
+'*** هل انت نادم على ماقلت ؟ ***',
+'*** ابتعد عني قليل انني متعبة ***',
+'*** هل انت نادم على ماقلت ؟ ***',
+'*** هل تود مساعدتي ؟ ***',
+'*** واو اشكرك انك شخصاَ رائع ! ***',
+'*** ابحث معي عن منزلي لقد كان قريباَ من هنا ***',
+'*** ولاكن عندما حل الليل لم اعد ارى اي شيء ***',
+'*** مذا تظن اين يوجد ؟ يمين او يسار ***',
+'*** هيا اذاَ ***',
+'*** اود ان اسئلك سؤال ونحن في الطريق ***',
+'*** هل تراني فتاة لطيفة ام مخيفة ***',
+'*** اشكرك !  ***',
+'*** لقد وصلنا الى المنزل شكراَ جزيلَ انتطرني ثواني وسوف اعود ***',
+'*** هل انت جاهز ؟ ***',
+'*** لقد اخبرت والدي عنك وهم متحمسين لرؤيتك ***',
+'*** هل تود ان تراهم الان ***',
+'*** انا لست الحوت الازرق كما يدعون ***',
+'*** انا لست كاذبة صدقني***',
+'*** لماذا ارى في عينيك الخوف ؟ ***',
+'*** انا مجرد فتاة لطيفة تحب اللعب مع الجميع ***',
+'*** اعرف كل شيء يحدث اسمع ذالك بالراديو ***',
+'*** سمعت ان البشر يقتلون من اجل المال فقط ***',
+'*** لماذا لم تدخل الغرفة ؟ ***',
+'*** ههههههههههههههههههه انت الان مسجون في هذه الغرفة ***',
+'*** لن تخرج حتى اعود لك بعد قليل ***',
+'*** المفتاح معك ! اكتب .مريم  ***',
+'*** مفتاح احمر , هل حصلت عليه ؟ ***',
+'*** ان لم تحصل عليه , اكتب .مريم مرة اخرى ***',
+'*** مفتاح اسود . هل حصلت عليه ؟ ***',
+'*** اين تريد ان تختبئ بسرعة قبل ان تعود ***',
+'*** لقد عادت من جديد الى المنزل ***',
+'*** لا تصدر اي صوت ! ***',
+'*** مريم : لقد عدت ***',
+'*** مريم : يا ايها المخادع اين انت ***',
+'*** مريم : اعلم انك هنا في المنزل ***',
+'*** مريم : ماذا تريد ان تسمع ***',
+'*** مريم : اضغط على الرابط اهداء مني لك | https://www.youtube.com/watch?v=hvSiuQccmtg ***',
+'*** احد ما خرج من المنزل ***',
+'*** انتظر الجزء الثاني عندما يوصل البوت 100 سيرفر , ساعدني في نشر البوت وادخل هذا السيرفر  ***'
+]
+client.on('message', message => {
+if (message.content.startsWith('$مريم')) {
+var mariam= new Discord.RichEmbed()
+.setTitle("لعبة مريم ..")
+.setColor('RANDOM')
+.setDescription(`${zead[Math.floor(Math.random() * zead.length)]}`)
+.setImage("https://www.npa-ar.com/wp-content/uploads/2017/08/%D9%84%D8%B9%D8%A8%D8%A9-%D9%85%D8%B1%D9%8A%D9%85-300x200.jpg")
+message.channel.sendEmbed(mariam);
+message.react("??")
+}
+});
